@@ -25,6 +25,7 @@ root.withdraw()
 # Give the location of the file 
 loc = askopenfilename(title = "Select EXCEL file",filetypes = (("xlsx files","*.xlsx"), ("all files","*.*")) )
   
+#This part is about parsing the Excel file into the variables needed to store the event info
 # To open Workbook 
 wb = xlrd.open_workbook(loc) 
 sheet = wb.sheet_by_index(0) 
@@ -48,24 +49,29 @@ endtime_in = (sheet.cell_value(1,5))
 enddate_in = (sheet.cell_value(1,6))
 end_dts = enddate_in + ' ' + endtime_in
 
+#Date & timestamp stuff is janky because the JSON object "event" wants RCF formatted time,
+#whereas the Excel file could have any kind of time input, so using strptime with concacted strings is probably the most
+#flexible approach for now
 dto_start = datetime.datetime.strptime(start_dts, '%m-%d-%Y %I:%M %p')
 dto_end = datetime.datetime.strptime(end_dts, '%m-%d-%Y %I:%M %p')
 
-#Get Attendees
+#Get Attendees // currently not implemented
+#List of attendees is a "list of dicts" which is the input the JSON object "event" wants
 #attendee = (sheet.cell_value(7,1))
 attendees = ["lpage@example.com", "ddage@example.com"]
 list_of_attendees = [
     {'email': attendees[0] },
     {'email': attendees[1] }
     ]
-
+#Is a WIP
 
 def main():
+    # A quick check to see if the token already exists.
     if (not (path.exists("token.pickle"))):
         tkinter.messagebox.showinfo( "Excel to Google Event", "You will be prompted to login & give permission to Google Cal")
     
+    #This is taken directly from the Google API Quickstart guide
     """Shows basic usage of the Google Calendar API.
-    Prints the start and name of the next 10 events on the user's calendar.
     """
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
@@ -85,11 +91,11 @@ def main():
         # Save the credentials for the next run
         with open('token.pickle', 'wb') as token:
             pickle.dump(creds, token)
-
+    
+    #Here the service is built with credentials & we can move on to creating the event
     service = build('calendar', 'v3', credentials=creds)
 
-
-    
+    #The actual JSON style event object, time zone is static just because not really necessary 
     event = {
       'summary': summary_in,
       'location': loc_in,
@@ -114,8 +120,10 @@ def main():
         ],
       },
     }
-
+    
+    #Uses the service to insert the event
     event = service.events().insert(calendarId='primary', body=event, sendUpdates='all').execute()
+    #could possibly make a popup with the HTML link as output
     print ('Event created: %s' % (event.get('htmlLink')))
 
 if __name__ == '__main__':
