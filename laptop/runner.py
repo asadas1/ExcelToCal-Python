@@ -1,12 +1,13 @@
 #Sources:
 #https://www.geeksforgeeks.org/reading-excel-file-using-python/
 #https://developers.google.com/calendar/v3/reference
-
 from __future__ import print_function
+import sys
 import os.path
 from os import path
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
+from tkinter import simpledialog
 import tkinter.messagebox
 import datetime
 import pickle
@@ -51,6 +52,32 @@ def main():
     
     #Here the service is built with credentials & we can move on to creating the event
     service = build('calendar', 'v3', credentials=creds)
+
+    calHolder = []
+    #Print List of Calanders
+    page_token = None
+    while True:
+      calendar_list = service.calendarList().list(pageToken=page_token).execute()
+      for calendar_list_entry in calendar_list['items']:
+        print (calendar_list_entry['summary'])
+        calHolder.append({"in": calendar_list_entry['summary'], "cal_id":calendar_list_entry['id']})
+      page_token = calendar_list.get('nextPageToken')
+      if not page_token:
+        break
+
+    cal_msg = "Cals: "
+    index = 0
+    for dicts in calHolder:
+        msg = '\n' + str(index) + ' ' + dicts["in"] + '          '
+        cal_msg += msg
+        index += 1
+
+    print(cal_msg)
+    USER_INP = simpledialog.askinteger(title="Select Cal", prompt=cal_msg)
+    print (USER_INP)
+    if USER_INP == -1:
+        print("it should exit")
+        sys.exit(1)
 
     #Adding on sheets service
     sheets_service = build('sheets', 'v4', credentials=creds)
