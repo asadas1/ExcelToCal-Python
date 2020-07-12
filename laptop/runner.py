@@ -78,7 +78,17 @@ def main():
     if USER_INP == -1:
         print("it should exit")
         sys.exit(1)
+        
+    cal_id_inp = ''
+    index = 0
+    for dicts in calHolder:
+        if index == USER_INP:
+            cal_id_inp = dicts["cal_id"]
+            break
+        index += 1
+    print(cal_id_inp)
 
+    
     #Adding on sheets service
     sheets_service = build('sheets', 'v4', credentials=creds)
 
@@ -87,6 +97,8 @@ def main():
     SCHEDULE_SHEET_ID = '1461379716' # 2-Schedule Recording-Instructional Day
     INSTRUCTORS_SHEET_ID = '1867685112' # 1-Approve Courses-Instructors-DropDown Menus
     SAMPLE_RANGE_NAME = '2-Schedule Recording-Instructional Day!A57:Y192'
+    INSTRUCTORS_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!N2:O79'
+    STAFF_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!AG2:AH16'
 
     # Call the Sheets API
     sheet = sheets_service.spreadsheets()
@@ -95,25 +107,70 @@ def main():
     values = result.get('values', [])
     print (len(values))
 
+    sheet2 = sheets_service.spreadsheets()
+    result2 = sheet2.values().get(spreadsheetId=SPREADSHEET_ID,
+                                range=INSTRUCTORS_SHEET_RANGE).execute()
+    values2 = result2.get('values', [])
+    print (len(values2))
+
     search = []
+    START_DATE = simpledialog.askstring(title="Date From (inclusive)", prompt="Enter the start of the date range (MM/DD/YYYY)" )
+    RANGE_START = datetime.datetime.strptime(START_DATE, '%m/%d/%Y')
+    END_DATE = simpledialog.askstring(title="Date Until (inclusive)", prompt="Enter the end of the date range (MM/DD/YYYY)" )
+    RANGE_END = datetime.datetime.strptime(END_DATE, '%m/%d/%Y')
 
     if not values:
         print('No data found.')
     else:
         for row in values:
-            #print (len(row))
-            # Print columns A and E, which correspond to indices 0 and 4.
-            if (row[0] == '07/01/2020'):
+            TEST_DATE = datetime.datetime.strptime(row[0], '%m/%d/%Y')
+            if (RANGE_START <= TEST_DATE <= RANGE_END):
                 search.append(row)
                 print('0 ' + row[0] + ' 1 ' + row[1] + ' 4 ' + row[4] + ' 5 ' + row[5] + ' 6 ' + row[6] + ' 7 ' + row[7] + ' 8 ' + row[8] + ' 9 ' + row[9] + ' 10 ' + row[10] + ' 11 ' + row[11] + ' 12 ' + row[12] + ' 13 ' + row[13] )
 
+    inst_to_email = {}
+    if not values2:
+        print('No data found.')
+    else:
+        for row in values2:
+            if (len(row) == 2):
+                print('0: ' + row[0] + " 1: " + row[1])
+                inst_to_email[row[0]] = row[1]
+            else:
+                print('0: ' + row[0] + " 1: email_not_found@example.com")
+                inst_to_email[row[0]] = "email_not_found@example.com"
+
+    staff_to_email = {}
+    sheet2 = sheets_service.spreadsheets()
+    result2 = sheet2.values().get(spreadsheetId=SPREADSHEET_ID,
+                                range=STAFF_SHEET_RANGE).execute()
+    values2 = result2.get('values', [])
+    print (len(values2))
+    if not values2:
+        print('No data found.')
+    else:
+        for row in values2:
+            if (len(row) == 2):
+                print('0: ' + row[0] + " 1: " + row[1])
+                staff_to_email[row[0]] = row[1]
+            else if (len(row) == 2):
+                print('0: ' + row[0] + " 1: email_not_found@example.com")
+                staff_to_email[row[0]] = "email_not_found@example.com"
+
     for row in search:
         #Get Title/Summary
-        summary_in = (row[10])
+        summary_in = (row[10] + " - " + row[9])
+        if row[11]:
+            summary_in += (" - " + row[11] + " MGR ")
+        if row[12]:
+            summary_in += (" - " + row[12] + " IPS ")
+        if row[13]:
+            summary_in += (" - " + row[13] + " MA ")
 
         #Get Location
         loc_in = (row[1])
-
+        if (row[1] == "Chrysler Studio"):
+            loc_in = "Chrysler Studio 109 B"
         #Get Desc
         desc_in = (row[10])
 
@@ -131,40 +188,30 @@ def main():
 
         #Get Attendees // currently not implemented
         #List of attendees is a "list of dicts" which is the input the JSON object "event" wants
-        #attendees = ["lpage@example.com", "ddage@example.com"]
-        attendee = row[9].split(',')
-        sttendee = attendee[0]
+        instructor = inst_to_email[row[9]]
 
-        print(sttendee)
+        print(instructor)
         list_of_attendees = [
-            {'email': sttendee+'@example.com'}
+            {'email': instructor}
             ]
         if row[11]:
-            print (row[11])
             a0dee = row[11].split(',')
             a1dee = a0dee[0].split()
-            if a1dee:
-                a2dee = a1dee[0]
-                print(a2dee)
-                list_of_attendees.append({'email': a2dee+'@example.com'})
+            a2dee = a1dee[0]
+            print(a2dee)
+            list_of_attendees.append({'email': a2dee+'@example.com'})
         if row[12]:
-            print (row[12])
             a0dee = row[12].split(',')
-            print(a0dee)
             a1dee = a0dee[0].split()
-            print(a1dee)
-            if a1dee:
-                a2dee = a1dee[0]
-                print(a2dee)
-                list_of_attendees.append({'email': a2dee+'@example.com'})
+            a2dee = a1dee[0]
+            print(a2dee)
+            list_of_attendees.append({'email': a2dee+'@example.com'})
         if row[13]:
-            print (row[13])
-            a0dee = row[11].split(',')
+            a0dee = row[13].split(',')
             a1dee = a0dee[0].split()
-            if a1dee:
-                a2dee = a1dee[0]
-                print(a2dee)
-                list_of_attendees.append({'email': a2dee+'@example.com'})
+            a2dee = a1dee[0]
+            print(a2dee)
+            list_of_attendees.append({'email': a2dee+'@example.com'})
         #Is a WIP
 
 
@@ -195,9 +242,11 @@ def main():
         }
         
         #Uses the service to insert the event
-        event = service.events().insert(calendarId='primary', body=event, sendUpdates='all').execute()
+        #event = service.events().insert(calendarId='primary', body=event, sendUpdates='all').execute()
         #could possibly make a popup with the HTML link as output
-        print ('Event created: %s' % (event.get('htmlLink')))
+        #print ('Event created: %s' % (event.get('htmlLink')))
+        print(event)
+    sys.exit(1)
 
 if __name__ == '__main__':
     main()
