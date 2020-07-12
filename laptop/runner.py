@@ -5,6 +5,7 @@ from __future__ import print_function
 import sys
 import os.path
 from os import path
+import gspread
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 from tkinter import simpledialog
@@ -96,7 +97,7 @@ def main():
     SPREADSHEET_ID = '15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ'
     SCHEDULE_SHEET_ID = '1461379716' # 2-Schedule Recording-Instructional Day
     INSTRUCTORS_SHEET_ID = '1867685112' # 1-Approve Courses-Instructors-DropDown Menus
-    SAMPLE_RANGE_NAME = '2-Schedule Recording-Instructional Day!A57:Y192'
+    SAMPLE_RANGE_NAME = '2-Schedule Recording-Instructional Day!A57:Z246'
     INSTRUCTORS_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!N2:O79'
     STAFF_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!AG2:AH16'
 
@@ -126,7 +127,7 @@ def main():
             TEST_DATE = datetime.datetime.strptime(row[0], '%m/%d/%Y')
             if (RANGE_START <= TEST_DATE <= RANGE_END):
                 search.append(row)
-                print('0 ' + row[0] + ' 1 ' + row[1] + ' 4 ' + row[4] + ' 5 ' + row[5] + ' 6 ' + row[6] + ' 7 ' + row[7] + ' 8 ' + row[8] + ' 9 ' + row[9] + ' 10 ' + row[10] + ' 11 ' + row[11] + ' 12 ' + row[12] + ' 13 ' + row[13] )
+                print('0 ' + row[0] + ' 1 ' + row[1] + ' 4 ' + row[4] + ' 5 ' + row[5] + ' 6 ' + row[6] + ' 7 ' + row[7] + ' 8 ' + row[8] + ' 9 ' + row[9] + ' 10 ' + row[10] + ' 11 ' + row[11] + ' 12 ' + row[12] + ' 13 ' + row[13] + ' 18 ' + row[18] )
 
     inst_to_email = {}
     if not values2:
@@ -153,11 +154,16 @@ def main():
             if (len(row) == 2):
                 print('0: ' + row[0] + " 1: " + row[1])
                 staff_to_email[row[0]] = row[1]
-            else if (len(row) == 2):
+            if (len(row) == 1):
                 print('0: ' + row[0] + " 1: email_not_found@example.com")
                 staff_to_email[row[0]] = "email_not_found@example.com"
 
     for row in search:
+        #skip if the event was already made
+        if row[25] == 'Y':
+            print("skipped " + row[10] + " " + row[0])
+            continue
+        
         #Get Title/Summary
         summary_in = (row[10] + " - " + row[9])
         if row[11]:
@@ -190,29 +196,39 @@ def main():
         #List of attendees is a "list of dicts" which is the input the JSON object "event" wants
         instructor = inst_to_email[row[9]]
 
+        staff_holder = ""
         print(instructor)
         list_of_attendees = [
             {'email': instructor}
             ]
         if row[11]:
-            a0dee = row[11].split(',')
-            a1dee = a0dee[0].split()
-            a2dee = a1dee[0]
-            print(a2dee)
-            list_of_attendees.append({'email': a2dee+'@example.com'})
+            their_email = staff_to_email[row[11]]
+            list_of_attendees.append({'email': their_email})
+            staff_holder = row[11]
+            print(their_email)
         if row[12]:
-            a0dee = row[12].split(',')
-            a1dee = a0dee[0].split()
-            a2dee = a1dee[0]
-            print(a2dee)
-            list_of_attendees.append({'email': a2dee+'@example.com'})
+            their_email = staff_to_email[row[12]]
+            list_of_attendees.append({'email': their_email})
+            staff_holder = row[12]
+            print(their_email)
         if row[13]:
-            a0dee = row[13].split(',')
-            a1dee = a0dee[0].split()
-            a2dee = a1dee[0]
-            print(a2dee)
-            list_of_attendees.append({'email': a2dee+'@example.com'})
+            their_email = staff_to_email[row[13]]
+            list_of_attendees.append({'email': their_email})
+            staff_holder = row[13]
+            print(their_email)
         #Is a WIP
+
+        print(row[18])
+        if (row[18] == "Credit"):
+            print("It's a Credit Course. ")
+            print(staff_holder)
+            if (staff_holder == "Brandon"):
+                list_of_attendees.append({'email': "reillym@umich.edu", 'optional': 1})
+                list_of_attendees.append({'email': "skash@umich.edu", 'optional': 1})
+            if (staff_holder == "Mary"):
+                list_of_attendees.append({'email': "bsandusk@umich.edu", 'optional': 1})
+                list_of_attendees.append({'email': "skash@umich.edu", 'optional': 1})
+
 
 
         #The actual JSON style event object, time zone is static just because not really necessary 
