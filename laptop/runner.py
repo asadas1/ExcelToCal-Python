@@ -29,12 +29,24 @@ def my_handler(type, value, tb):
     logging.exception("Uncaught exception: {0}".format(str(value)))
 #sys.excepthook = my_handler
 
-# If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/calendar', 'https://www.googleapis.com/auth/spreadsheets', "https://www.googleapis.com/auth/drive", "spreadsheets.google.com/feeds"]
+# If modifying these scopes, delete the file token.pickle. "spreadsheets.google.com/feeds"
+SCOPES = ['https://www.googleapis.com/auth/calendar', 'https://www.googleapis.com/auth/spreadsheets', "https://www.googleapis.com/auth/drive"]
 
 #Root window for TK
 root = tk.Tk()
 root.withdraw()
+
+#Spreadsheet ID's and various other information.
+#Can be re-written to access via INI?
+    
+SPREADSHEET_ID = '15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ'
+SCHEDULE_SHEET_ID = '1461379716' # 2-Schedule Recording-Instructional Day
+INSTRUCTORS_SHEET_ID = '1867685112' # 1-Approve Courses-Instructors-DropDown Menus
+SAMPLE_RANGE_NAME = '2-Schedule Recording-Instructional Day!A57:AA'
+INSTRUCTORS_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!N2:O79'
+STAFF_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!AG2:AH16'
+LOCATION_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!R2:R12'
+
 
 
 
@@ -73,6 +85,10 @@ def main():
     #Build gspread
     client = gspread.authorize(creds)
 
+    #Open gspread
+    gsheet = client.open("Nexus Recording Schedule - Master")
+    gworksheet = gsheet.worksheet("2-Schedule Recording-Instructional Day")
+
     #Need to re-write whole section
 
     #Init & print list of Cals
@@ -88,34 +104,84 @@ def main():
         break
 
     #Append to single string in order to display in msgbox
-    cal_msg = "Please enter the corresponding number for the Calendar on which you would like the events to be created" + '\n' +  "Calanders on your account: " + '\n'
+    cal_msg = "Please match the numbers for the Calendars for each location, if no match exists enter \'-1\' " + '\n' +  "Calanders on your account: " + '\n'
+    cal_msg2 = '\n'
     index = 0
     for dicts in calHolder:
         msg = '\n' + ' [ ' + str(index) + ' ]:   ' + dicts["in"] + '          '
-        cal_msg += msg
+        cal_msg2 += msg
         index += 1
 
+    #Adding on sheets service
+    sheets_service = build('sheets', 'v4', credentials=creds)
+
+
+
+    
     #Prompt user for selection via messagebox
-    cal_msg += '\n' + '\n'
+    cal_msg2 += '\n'
     print(cal_msg)
-    USER_INP = simpledialog.askinteger(title="Select Cal", prompt=cal_msg)
-    print (USER_INP)
-    if USER_INP == -1:
-        print("it should exit")
-        sys.exit(1)
-    if (index < USER_INP < 0):
-        print("selection out of range")
-        sys.exit(1)
+    print(cal_msg2)
+    USER_INP = -1
 
-    #Iteratively find & store the correct Cal ID to access it via API
-    cal_id_inp = ''
-    index = 0
-    for dicts in calHolder:
-        if index == USER_INP:
-            cal_id_inp = dicts["cal_id"]
-            break
-        index += 1
-    print(cal_id_inp)
+    dict_of_locations = {}
+    if path.exists("calconfig.pickle"):
+        with open('calconfig.pickle', 'rb') as handle:
+            dict_of_locations = pickle.load(handle)
+    else:
+        sheet3 = sheets_service.spreadsheets()
+        result3 = sheet3.values().get(spreadsheetId=SPREADSHEET_ID,
+                                    range=LOCATION_SHEET_RANGE).execute()
+        values3 = result3.get('values', [])
+        print (len(values3))
+        if not values3:
+            print('No data found.')
+        else:
+            for row in values3:
+                dict_of_locations[row[0]] = -1
+        with open('calconfig.pickle', 'wb') as handle:
+            pickle.dump(dict_of_locations, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    
+    list_of_variables = []
+
+    master = Tk()
+    for i in range(len(dict_of_locations)):
+        list_of_variables.append(IntVar(master))
+        
+    tk.Label(master, text=cal_msg, padx = 10, pady = 5, anchor = 'center').grid(row=0)
+    tk.Label(master, text=cal_msg2, padx = 10, pady = 5, justify = 'left').grid(row=1)
+    endrow = 0
+    for i, location in enumerate(dict_of_locations):
+        tk.Label(master, text=location, padx = 10, pady = 5).grid(row=i+2)
+        ee = tk.Entry(master, textvariable=list_of_variables[i])
+        ee.delete(0, END)
+        ee.insert(0, dict_of_locations[location])
+        ee.grid(row = i+2, column = 1)
+        endrow = i+2
+
+    endrow += 2
+    
+    def callback():
+        for i, location in enumerate(dict_of_locations):
+            print(list_of_variables[i].get())
+            dict_of_locations[location] = list_of_variables[i].get()
+        master.destroy()
+        master.quit()
+        print(dict_of_locations)
+        with open('calconfig.pickle', 'wb') as handle:
+            pickle.dump(dict_of_locations, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    
+    b = Button(master, text="Submit", width=10, command=callback)
+    b.grid(row=endrow+2, column=0)
+    master.mainloop()
+
+    #Convert indexes to CAL ID
+    for i, location in enumerate(dict_of_locations):
+        for j, cal in enumerate(calHolder):
+            if (dict_of_locations[location] == j):
+                dict_of_locations[location] = cal["cal_id"]
+                
+    print(dict_of_locations)
 
 
 
@@ -166,23 +232,6 @@ def main():
     search_method = v.get()
     print(search_method)
     #sys.exit(1)
-    
-    #Adding on sheets service
-    sheets_service = build('sheets', 'v4', credentials=creds)
-
-    #Spreadsheet ID's and various other information.
-    #Can be re-written to access via INI?
-    
-    SPREADSHEET_ID = '15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ'
-    SCHEDULE_SHEET_ID = '1461379716' # 2-Schedule Recording-Instructional Day
-    INSTRUCTORS_SHEET_ID = '1867685112' # 1-Approve Courses-Instructors-DropDown Menus
-    SAMPLE_RANGE_NAME = '2-Schedule Recording-Instructional Day!A57:AA'
-    INSTRUCTORS_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!N2:O79'
-    STAFF_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!AG2:AH16'
-
-    #Open gspread
-    gsheet = client.open("Nexus Recording Schedule - Master")
-    gworksheet = gsheet.worksheet("2-Schedule Recording-Instructional Day")
 
     # Call the Sheets API
     sheet = sheets_service.spreadsheets()
@@ -283,6 +332,11 @@ def main():
         if row[25] != 'N':
             print("skipped " + row[10] + " " + row[0])
             continue
+        #Convert location to CAL ID
+        if dict_of_locations[row[1]] == -1:
+            print("skipped " + row[10] + " " + row[0] + " No Cal")
+            continue
+        
         gworksheet.update_cell(int(row[26]), 26, "Y")
         s_index += 1
         
@@ -380,9 +434,9 @@ def main():
           },
         }
 
-        
+        print(dict_of_locations[row[1]])
         #Uses the service to insert the event
-        #event = service.events().insert(calendarId='primary', body=event, sendUpdates='all').execute()
+        #event = service.events().insert(calendarId=dict_of_locations[row[1]], body=event, sendUpdates='all').execute()
         #could possibly make a popup with the HTML link as output
         #print ('Event created: %s' % (event.get('htmlLink')))
         #event_link = event.get('htmlLink')

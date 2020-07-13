@@ -37,8 +37,6 @@ root = tk.Tk()
 root.withdraw()
 
 dict_of_locations = {'Chrysler 133':0, 'Chrysler 151':1, 'Chrysler 165':2, 'Chrysler Studio':3}
-list_of_cal_names = ["chrlsyer1", "wednes"]
-list_of_locations = ['Chrysler 133', 'Chrysler 151', 'Chrysler 165', 'Chrysler Studio']
 list_of_variables = []
 
 def main():
@@ -50,7 +48,8 @@ def main():
     for i, location in enumerate(dict_of_locations):
         tk.Label(master, text=location, padx = 10, pady = 5).grid(row=i+1)
         ee = tk.Entry(master, textvariable=list_of_variables[i])
-        ee.insert(0, dict_of_locations[location])
+        ee.delete(0, END)
+        ee.insert(0, str(dict_of_locations[location]))
         ee.grid(row =i+1, column = 1)
         endrow = i+1
 
