@@ -88,14 +88,15 @@ def main():
         break
 
     #Append to single string in order to display in msgbox
-    cal_msg = "Please enter the corresponding number for the Calendar on which you would like the events to be created" + '\n' +  "Calanders on your account: "
+    cal_msg = "Please enter the corresponding number for the Calendar on which you would like the events to be created" + '\n' +  "Calanders on your account: " + '\n'
     index = 0
     for dicts in calHolder:
-        msg = '\n' + str(index) + ' ' + dicts["in"] + '          '
+        msg = '\n' + ' [ ' + str(index) + ' ]:   ' + dicts["in"] + '          '
         cal_msg += msg
         index += 1
 
     #Prompt user for selection via messagebox
+    cal_msg += '\n' + '\n'
     print(cal_msg)
     USER_INP = simpledialog.askinteger(title="Select Cal", prompt=cal_msg)
     print (USER_INP)
