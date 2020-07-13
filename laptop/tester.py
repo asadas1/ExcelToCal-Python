@@ -36,29 +36,34 @@ SCOPES = ['https://www.googleapis.com/auth/calendar', 'https://www.googleapis.co
 root = tk.Tk()
 root.withdraw()
 
-
+dict_of_locations = {'Chrysler 133':0, 'Chrysler 151':1, 'Chrysler 165':2, 'Chrysler Studio':3}
+list_of_cal_names = ["chrlsyer1", "wednes"]
+list_of_locations = ['Chrysler 133', 'Chrysler 151', 'Chrysler 165', 'Chrysler Studio']
+list_of_variables = []
 
 def main():
     master = Tk()
-    
+    for i in range(len(dict_of_locations)):
+        list_of_variables.append(IntVar(master))
     tk.Label(master, text="This is the header:", padx = 10, pady = 5, anchor = 'center').grid(row=0)
-    tk.Label(master, text="First Name", padx = 10, pady = 5).grid(row=1)
-    tk.Label(master, text="Last Name", padx = 10, pady = 5).grid(row=2)
+    endrow = 0
+    for i, location in enumerate(dict_of_locations):
+        tk.Label(master, text=location, padx = 10, pady = 5).grid(row=i+1)
+        ee = tk.Entry(master, textvariable=list_of_variables[i])
+        ee.insert(0, dict_of_locations[location])
+        ee.grid(row =i+1, column = 1)
+        endrow = i+1
 
-    e1 = tk.Entry(master)
-    e2 = tk.Entry(master)
-
+    endrow += 2
+    
     def callback():
-        print (e1.get())
-        print (e2.get())
+        for variable in list_of_variables:
+            print(variable.get())
         master.destroy
         sys.exit(1)
-
-    e1.grid(row=1, column=1)
-    e2.grid(row=2, column=1)
     
     b = Button(master, text="get", width=10, command=callback)
-    b.grid(row=3, column=0)
+    b.grid(row=endrow+2, column=0)
 
     master.mainloop()
 
