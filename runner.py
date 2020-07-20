@@ -365,12 +365,12 @@ def main():
     for row in search:
         #skip if the event was already made
         if row[25] != 'N':
-            event_skiplist.append("skipped " + row[10] + " " + row[0])
+            event_skiplist.append("skipped " + row[10] + " " + row[0] + " was marked as: " + row[25])
             print("skipped " + row[10] + " " + row[0])
             continue
         #Convert location to CAL ID
         if dict_of_locations[row[1]] == -1:
-            event_skiplist.append("skipped " + row[10] + " " + row[0] + " No Cal")
+            event_skiplist.append("skipped " + row[10] + " " + row[0] + " Calendar for location " + row[1] + " was not found.")
             print("skipped " + row[10] + " " + row[0] + " No Cal")
             continue
         
@@ -489,7 +489,6 @@ def main():
         f.write('\n' + "<p><a href=\"" + event['link'] + "\">" + event['link'] + "</a></p>")
     f.write('\n' + "</blockquote>")
     for event in event_skiplist:
-        print(event)
         f.write('\n' + "<p>" + event + "</p>")
     f.close()
     os.startfile("CreatedEvents.html")
