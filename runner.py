@@ -43,7 +43,9 @@ SPREADSHEET_ID = '15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ'
 SCHEDULE_SHEET_ID = '1461379716' # 2-Schedule Recording-Instructional Day
 INSTRUCTORS_SHEET_ID = '1867685112' # 1-Approve Courses-Instructors-DropDown Menus
 SAMPLE_RANGE_NAME = '2-Schedule Recording-Instructional Day!A57:AA'
-INSTRUCTORS_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!N2:O79'
+
+# Range for Sheet 1- is N to AN
+INSTRUCTORS_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!N2:AN799'
 STAFF_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!AG2:AH16'
 LOCATION_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!R2:R12'
 
@@ -89,8 +91,6 @@ def main():
     gsheet = client.open("Nexus Recording Schedule - Master")
     gworksheet = gsheet.worksheet("2-Schedule Recording-Instructional Day")
 
-    #Need to re-write whole section
-
     #Init & print list of Cals
     calHolder = []
     page_token = None
@@ -124,6 +124,13 @@ def main():
     print(cal_msg2)
     USER_INP = -1
 
+    sheet3 = sheets_service.spreadsheets()
+    result3 = sheet3.values().get(spreadsheetId=SPREADSHEET_ID, range=INSTRUCTORS_SHEET_RANGE).execute()
+    values3 = result3.get('values', [])
+    for row in values3:
+        print(row)
+    sys.exit(1)
+
     dict_of_locations = {}
     if path.exists("calconfig.pickle"):
         with open('calconfig.pickle', 'rb') as handle:
@@ -131,7 +138,7 @@ def main():
     else:
         sheet3 = sheets_service.spreadsheets()
         result3 = sheet3.values().get(spreadsheetId=SPREADSHEET_ID,
-                                    range=LOCATION_SHEET_RANGE).execute()
+                                    range=INSTRUCTORS_SHEET_RANGE).execute()
         values3 = result3.get('values', [])
         print (len(values3))
         if not values3:
