@@ -274,12 +274,6 @@ def main():
     values = result.get('values', [])
     print (len(values))
 
-    sheet2 = sheets_service.spreadsheets()
-    result2 = sheet2.values().get(spreadsheetId=SPREADSHEET_ID,
-                                range=INSTRUCTORS_SHEET_RANGE).execute()
-    values2 = result2.get('values', [])
-    print (len(values2))
-
     #Prompt & convert date range
     search = []
     search_indexes = []
@@ -327,34 +321,30 @@ def main():
 
     #Read in instructor emails
     inst_to_email = {}
-    if not values2:
-        print('No data found.')
-    else:
-        for row in values2:
-            if (len(row) == 2):
-                print('0: ' + row[0] + " 1: " + row[1])
+    for row in values3:
+        if (len(row) >= 2):
+            if row[1]:
+                print('0: ' + row[0] + " 20: " + row[1])
                 inst_to_email[row[0]] = row[1]
             else:
-                print('0: ' + row[0] + " 1: email_not_found@example.com")
+                print('0: ' + row[0] + " 20: email_not_found@example.com")
                 inst_to_email[row[0]] = "email_not_found@example.com"
+        else:
+            print('0: ' + row[0] + " 20: email_not_found@example.com")
+            inst_to_email[row[0]] = "email_not_found@example.com"
 
     #Read in staff emails
-    staff_to_email = {}
-    sheet2 = sheets_service.spreadsheets()
-    result2 = sheet2.values().get(spreadsheetId=SPREADSHEET_ID,
-                                range=STAFF_SHEET_RANGE).execute()
-    values2 = result2.get('values', [])
-    print (len(values2))
-    if not values2:
-        print('No data found.')
-    else:
-        for row in values2:
-            if (len(row) == 2):
-                print('0: ' + row[0] + " 1: " + row[1])
-                staff_to_email[row[0]] = row[1]
-            if (len(row) == 1):
-                print('0: ' + row[0] + " 1: email_not_found@example.com")
-                staff_to_email[row[0]] = "email_not_found@example.com"
+        for row in values3:
+            if (len(row) >= 21):
+                if row[20]:
+                    print('0: ' + row[19] + " 1: " + row[20])
+                    staff_to_email[row[19]] = row[20]
+                else:
+                    print('0: ' + row[19] + " 1: email_not_found@example.com")
+                    staff_to_email[row[19]] = "email_not_found@example.com"
+            else:
+                print('0: ' + row[19] + " 1: email_not_found@example.com")
+                staff_to_email[row[19]] = "email_not_found@example.com"
 
     #Setup list of events for printing
     event_printlist = []
