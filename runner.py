@@ -170,6 +170,9 @@ def main():
     list_of_variables = []
 
     master = Tk()
+    def deleter():
+        sys.exit(1)
+    master.protocol("WM_DELETE_WINDOW", deleter)
 
     def callback():
         for i, location in enumerate(dict_of_locations):
@@ -181,7 +184,7 @@ def main():
         with open('calconfig.pickle', 'wb') as handle:
             pickle.dump(dict_of_locations, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-    master.protocol("WM_DELETE_WINDOW", callback)
+    
     for i in range(len(dict_of_locations)):
         list_of_variables.append(IntVar(master))
         
