@@ -124,6 +124,7 @@ def main():
     print(cal_msg2)
     USER_INP = -1
 
+    #Yes this is janky/bad code, but I mean cmon
     sheet3 = sheets_service.spreadsheets()
     result3 = sheet3.values().get(spreadsheetId=SPREADSHEET_ID, range=INSTRUCTORS_SHEET_RANGE).execute()
     values3 = result3.get('values', [])
@@ -150,29 +151,37 @@ def main():
             print("    nc-dru: " + row[25])
         if (len(row) >= 27):
             print("    nc-paul: " + row[26])
-    sys.exit(1)
 
     dict_of_locations = {}
     if path.exists("calconfig.pickle"):
         with open('calconfig.pickle', 'rb') as handle:
             dict_of_locations = pickle.load(handle)
     else:
-        sheet3 = sheets_service.spreadsheets()
-        result3 = sheet3.values().get(spreadsheetId=SPREADSHEET_ID,
-                                    range=INSTRUCTORS_SHEET_RANGE).execute()
-        values3 = result3.get('values', [])
-        print (len(values3))
         if not values3:
             print('No data found.')
         else:
             for row in values3:
-                dict_of_locations[row[0]] = -1
+                if (len(row) >= 5):
+                    if row[4]:
+                        dict_of_locations[row[4]] = -1
         with open('calconfig.pickle', 'wb') as handle:
             pickle.dump(dict_of_locations, handle, protocol=pickle.HIGHEST_PROTOCOL)
     
     list_of_variables = []
 
     master = Tk()
+
+    def callback():
+        for i, location in enumerate(dict_of_locations):
+            print(list_of_variables[i].get())
+            dict_of_locations[location] = list_of_variables[i].get()
+        master.destroy()
+        master.quit()
+        print(dict_of_locations)
+        with open('calconfig.pickle', 'wb') as handle:
+            pickle.dump(dict_of_locations, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+    master.protocol("WM_DELETE_WINDOW", callback)
     for i in range(len(dict_of_locations)):
         list_of_variables.append(IntVar(master))
         
@@ -188,16 +197,7 @@ def main():
         endrow = i+2
 
     endrow += 2
-    
-    def callback():
-        for i, location in enumerate(dict_of_locations):
-            print(list_of_variables[i].get())
-            dict_of_locations[location] = list_of_variables[i].get()
-        master.destroy()
-        master.quit()
-        print(dict_of_locations)
-        with open('calconfig.pickle', 'wb') as handle:
-            pickle.dump(dict_of_locations, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
     
     b = Button(master, text="Submit", width=10, command=callback)
     b.grid(row=endrow+2, column=0)
