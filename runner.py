@@ -144,7 +144,7 @@ def main():
         if (len(row) >= 22):
             print("    CCBK: " + row[21])
         if (len(row) >= 23):
-            print("    o-CCBK: " + row[22])
+            print("    o-CC: " + row[22])
         if (len(row) >= 25):
             print("    nc-mary: " + row[24])
         if (len(row) >= 26):
@@ -377,6 +377,8 @@ def main():
             summary_in += (" - " + row[12] + " IPS ")
         if row[13]:
             summary_in += (" - " + row[13] + " MA ")
+        if row[14]:
+            summary_in += (" - " + row[14] + " Backup ")
 
         #Get Location
         loc_in = (row[1])
@@ -403,37 +405,65 @@ def main():
         print(instructor)
 
         #Staff
-        staff_holder = ""
+        list_of_emailed_names = []
+        list_of_emailed_names.append(row[9])
         list_of_attendees = [
             {'email': instructor}
             ]
         if row[11]:
             their_email = staff_to_email[row[11]]
             list_of_attendees.append({'email': their_email})
-            staff_holder = row[11]
+            list_of_emailed_names.append(row[11])
             print(their_email)
         if row[12]:
             their_email = staff_to_email[row[12]]
             list_of_attendees.append({'email': their_email})
-            staff_holder = row[12]
+            list_of_emailed_names.append(row[12])
             print(their_email)
         if row[13]:
             their_email = staff_to_email[row[13]]
             list_of_attendees.append({'email': their_email})
-            staff_holder = row[13]
+            list_of_emailed_names.append(row[13])
+            print(their_email)
+        if row[14]:
+            their_email = staff_to_email[row[14]]
+            list_of_attendees.append({'email': their_email})
+            list_of_emailed_names.append(row[14])
             print(their_email)
 
         #Credit/Noncredit list(?) WIP
         print(row[18])
         if (row[18] == "Credit"):
             print("It's a Credit Course. ")
-            print(staff_holder)
-            if (staff_holder == "Brandon"):
-                list_of_attendees.append({'email': "reillym@umich.edu", 'optional': 1})
-                list_of_attendees.append({'email': "skash@umich.edu", 'optional': 1})
-            if (staff_holder == "Mary"):
-                list_of_attendees.append({'email': "bsandusk@umich.edu", 'optional': 1})
-                list_of_attendees.append({'email': "skash@umich.edu", 'optional': 1})
+            for roww in values3:
+                if (len(roww) >= 23):
+                    if not (roww[22] in list_of_emailed_names):
+                        list_of_emailed_names.append(roww[22])
+                        their_email = staff_to_email[roww[22]]
+                        list_of_attendees.append({'email': their_email, 'optional': 1})
+
+        else:
+            print("It's a Non-Credit Course. ")
+            if (row[11] == "Mary Lynn"):
+                for roww in values3:
+                    if (len(roww) >= 25):
+                        if not (roww[24] in list_of_emailed_names):
+                            list_of_emailed_names.append(roww[24])
+                            their_email = staff_to_email[roww[24]]
+                            list_of_attendees.append({'email': their_email, 'optional': 1})
+            if (row[11] == "Dru"):
+                for roww in values3:
+                    if (len(roww) >= 26):
+                        if not (roww[25] in list_of_emailed_names):
+                            list_of_emailed_names.append(roww[25])
+                            their_email = staff_to_email[roww[25]]
+                            list_of_attendees.append({'email': their_email, 'optional': 1})
+            if (row[11] == "Paul"):
+                    if (len(roww) >= 27):
+                        if not (roww[26] in list_of_emailed_names):
+                            list_of_emailed_names.append(roww[26])
+                            their_email = staff_to_email[roww[26]]
+                            list_of_attendees.append({'email': their_email, 'optional': 1})
 
 
 
