@@ -334,6 +334,7 @@ def main():
             inst_to_email[row[0]] = "email_not_found@example.com"
 
     #Read in staff emails
+    staff_to_email = {}
         for row in values3:
             if (len(row) >= 21):
                 if row[20]:
