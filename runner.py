@@ -216,6 +216,9 @@ def main():
     #Get what kind of method to select events
     search_method = 0
     window = Tk()
+    def deleter():
+        sys.exit(1)
+    window.protocol("WM_DELETE_WINDOW", deleter)
     v = IntVar(window)
     v.set(0)
 
