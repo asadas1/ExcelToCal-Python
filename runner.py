@@ -343,9 +343,10 @@ def main():
             else:
                 print('0: ' + row[19] + " 1: email_not_found@example.com")
                 staff_to_email[row[19]] = "email_not_found@example.com"
-        else:
-            print('0: ' + row[19] + " 1: email_not_found@example.com")
-            staff_to_email[row[19]] = "email_not_found@example.com"
+        if (len(row) >= 20):
+            if row[19]:
+                print('0: ' + row[19] + " 1: email_not_found@example.com")
+                staff_to_email[row[19]] = "email_not_found@example.com"
 
     #Setup list of events for printing
     event_printlist = []
