@@ -298,7 +298,8 @@ def main():
         print('No data found.')
     else:
         for row in values:
-            if not (row[0]):
+            print(row)
+            if not (len(row) > 5):
                 continue
             if search_method == 1:
                 TEST_DATE = datetime.datetime.strptime(row[0], '%m/%d/%Y')
@@ -343,10 +344,11 @@ def main():
             else:
                 print('0: ' + row[19] + " 1: email_not_found@example.com")
                 staff_to_email[row[19]] = "email_not_found@example.com"
-        if (len(row) >= 20):
-            if row[19]:
-                print('0: ' + row[19] + " 1: email_not_found@example.com")
-                staff_to_email[row[19]] = "email_not_found@example.com"
+        else:
+            if (len(row) >= 20):
+                if row[19]:
+                    print('0: ' + row[19] + " 1: email_not_found@example.com")
+                    staff_to_email[row[19]] = "email_not_found@example.com"
 
     #Setup list of events for printing
     event_printlist = []
@@ -411,25 +413,29 @@ def main():
             {'email': instructor}
             ]
         if row[11]:
-            their_email = staff_to_email[row[11]]
-            list_of_attendees.append({'email': their_email})
-            list_of_emailed_names.append(row[11])
-            print(their_email)
+            if not (row[11] in list_of_emailed_names):
+                their_email = staff_to_email[row[11]]
+                list_of_attendees.append({'email': their_email})
+                list_of_emailed_names.append(row[11])
+                print(their_email)
         if row[12]:
-            their_email = staff_to_email[row[12]]
-            list_of_attendees.append({'email': their_email})
-            list_of_emailed_names.append(row[12])
-            print(their_email)
+                if not (row[11] in list_of_emailed_names):
+                their_email = staff_to_email[row[12]]
+                list_of_attendees.append({'email': their_email})
+                list_of_emailed_names.append(row[12])
+                print(their_email)
         if row[13]:
-            their_email = staff_to_email[row[13]]
-            list_of_attendees.append({'email': their_email})
-            list_of_emailed_names.append(row[13])
-            print(their_email)
+                if not (row[11] in list_of_emailed_names):
+                their_email = staff_to_email[row[13]]
+                list_of_attendees.append({'email': their_email})
+                list_of_emailed_names.append(row[13])
+                print(their_email)
         if row[14]:
-            their_email = staff_to_email[row[14]]
-            list_of_attendees.append({'email': their_email})
-            list_of_emailed_names.append(row[14])
-            print(their_email)
+            if not (row[11] in list_of_emailed_names):
+                their_email = staff_to_email[row[14]]
+                list_of_attendees.append({'email': their_email})
+                list_of_emailed_names.append(row[14])
+                print(their_email)
 
         #Credit/Noncredit list(?) WIP
         print(row[18])
@@ -437,10 +443,11 @@ def main():
             print("It's a Credit Course. ")
             for roww in values3:
                 if (len(roww) >= 23):
-                    if not (roww[22] in list_of_emailed_names):
-                        list_of_emailed_names.append(roww[22])
-                        their_email = staff_to_email[roww[22]]
-                        list_of_attendees.append({'email': their_email, 'optional': 1})
+                    if (roww[22]):                        
+                        if not (roww[22] in list_of_emailed_names):
+                            list_of_emailed_names.append(roww[22])
+                            their_email = staff_to_email[roww[22]]
+                            list_of_attendees.append({'email': their_email, 'optional': 1})
 
         else:
             print("It's a Non-Credit Course. ")
