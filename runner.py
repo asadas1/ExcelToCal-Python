@@ -128,7 +128,28 @@ def main():
     result3 = sheet3.values().get(spreadsheetId=SPREADSHEET_ID, range=INSTRUCTORS_SHEET_RANGE).execute()
     values3 = result3.get('values', [])
     for row in values3:
-        print(row)
+        if (len(row) >= 5):
+            print(row[4])
+        if (len(row) >= 16):
+            print("    MGR: " + row[15])
+        if (len(row) >= 17):
+            print("    IPS: " + row[16])
+        if (len(row) >= 18):
+            print("    MA: " + row[17])
+        if (len(row) >= 19):
+            print("    Other: " + row[18])
+        if (len(row) >= 21):
+            print("         " + row[19] + ": " + row[20])
+        if (len(row) >= 22):
+            print("    CCBK: " + row[21])
+        if (len(row) >= 23):
+            print("    o-CCBK: " + row[22])
+        if (len(row) >= 25):
+            print("    nc-mary: " + row[24])
+        if (len(row) >= 26):
+            print("    nc-dru: " + row[25])
+        if (len(row) >= 27):
+            print("    nc-paul: " + row[26])
     sys.exit(1)
 
     dict_of_locations = {}
