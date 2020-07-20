@@ -335,17 +335,17 @@ def main():
 
     #Read in staff emails
     staff_to_email = {}
-        for row in values3:
-            if (len(row) >= 21):
-                if row[20]:
-                    print('0: ' + row[19] + " 1: " + row[20])
-                    staff_to_email[row[19]] = row[20]
-                else:
-                    print('0: ' + row[19] + " 1: email_not_found@example.com")
-                    staff_to_email[row[19]] = "email_not_found@example.com"
+    for row in values3:
+        if (len(row) >= 21):
+            if row[20]:
+                print('0: ' + row[19] + " 1: " + row[20])
+                staff_to_email[row[19]] = row[20]
             else:
                 print('0: ' + row[19] + " 1: email_not_found@example.com")
                 staff_to_email[row[19]] = "email_not_found@example.com"
+        else:
+            print('0: ' + row[19] + " 1: email_not_found@example.com")
+            staff_to_email[row[19]] = "email_not_found@example.com"
 
     #Setup list of events for printing
     event_printlist = []
