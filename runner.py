@@ -3,8 +3,12 @@
 #https://developers.google.com/calendar/v3/reference
 from __future__ import print_function
 import sys
+import requests
+import urllib.request #Should switch to only one?
 import logging
 import os.path
+import pathlib
+from subprocess import Popen, PIPE
 from os import path
 import gspread
 import tkinter as tk
@@ -18,6 +22,9 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import xlrd
+
+#Current Version
+currentVersion = 0.01
 
 #This sets up logging for exceptions and output basically
 log = open("log.txt", "a")
@@ -50,7 +57,27 @@ STAFF_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!AG2:AH16'
 LOCATION_SHEET_RANGE = '1-Approve Courses-Instructors-DropDown Menus!R2:R12'
 
 
+#update checking
+print('Checking for updates')
+versionURL = 'https://raw.githubusercontent.com/asadas1/ExcelToCal-Python/master/version.txt'
+r = requests.get(versionURL)
 
+with open('version.txt', 'wb') as f:
+    f.write(r.content)
+
+with open('version.txt', 'r') as f:
+    lines = f.readlines()
+    print (float(lines[0]))
+    if (float(lines[0]) > currentVersion):
+        print ('Program out of date')
+        choice = tkinter.messagebox.askquestion("Version out of date", "Program out of date, would you like to download updates?", icon='warning')
+        if (choice == 'yes'):
+            url = lines[1]
+            programname = lines[2]
+            urllib.request.urlretrieve(url, programname.rstrip())
+            Popen([programname.rstrip()], shell=True,
+             stdin=None, stdout=None, stderr=None, close_fds=True)
+            sys.exit(1)
 
 def main():
     # A quick check to see if the token already exists.
@@ -299,7 +326,7 @@ def main():
     else:
         for row in values:
             print(row)
-            if not (len(row) > 5):
+            if not (len(row) > 26):
                 continue
             if search_method == 1:
                 TEST_DATE = datetime.datetime.strptime(row[0], '%m/%d/%Y')
@@ -419,13 +446,13 @@ def main():
                 list_of_emailed_names.append(row[11])
                 print(their_email)
         if row[12]:
-                if not (row[11] in list_of_emailed_names):
+            if not (row[11] in list_of_emailed_names):
                 their_email = staff_to_email[row[12]]
                 list_of_attendees.append({'email': their_email})
                 list_of_emailed_names.append(row[12])
                 print(their_email)
         if row[13]:
-                if not (row[11] in list_of_emailed_names):
+            if not (row[11] in list_of_emailed_names):
                 their_email = staff_to_email[row[13]]
                 list_of_attendees.append({'email': their_email})
                 list_of_emailed_names.append(row[13])
