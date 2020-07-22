@@ -1,3 +1,4 @@
-0.04
+0.02
 https://raw.githubusercontent.com/asadas1/ExcelToCal-Python/master/version.txt
 version.txt
+Holder
