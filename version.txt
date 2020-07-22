@@ -1,2 +1,2 @@
-0.01
-https://github.com/asadas1/ExcelToCal-Python/blob/master/version.txt
+0.02
+https://raw.githubusercontent.com/asadas1/ExcelToCal-Python/master/version.txt
