@@ -2704,3 +2704,296 @@ DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsh
 DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z75?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z76?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z78?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:google.auth.transport.requests:Making request: POST https://oauth2.googleapis.com/token
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): oauth2.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+    "file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth"
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest
+DEBUG:urllib3.util.retry:Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://www.googleapis.com:443 "GET /drive/v3/files?q=mimeType%3D%22application%2Fvnd.google-apps.spreadsheet%22+and+name+%3D+%22Nexus+Recording+Schedule+-+Master%22&pageSize=1000&supportsAllDrives=True&includeItemsFromAllDrives=True HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): sheets.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "GET /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ?includeGridData=false HTTP/1.1" 200 None
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/calendar/v3/users/me/calendarList?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+    "file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth"
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/sheets/v4/rest
+DEBUG:googleapiclient.discovery:URL being requested: GET https://sheets.googleapis.com/v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/1-Approve%20Courses-Instructors-DropDown%20Menus%21N2%3AAN799?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://sheets.googleapis.com/v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/2-Schedule%20Recording-Instructional%20Day%21A57%3AAA?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+    "file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth"
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest
+DEBUG:urllib3.util.retry:Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://www.googleapis.com:443 "GET /drive/v3/files?q=mimeType%3D%22application%2Fvnd.google-apps.spreadsheet%22+and+name+%3D+%22Nexus+Recording+Schedule+-+Master%22&pageSize=1000&supportsAllDrives=True&includeItemsFromAllDrives=True HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): sheets.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "GET /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ?includeGridData=false HTTP/1.1" 200 None
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/calendar/v3/users/me/calendarList?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\the real sauce boss\AppData\Local\Programs\Python\Python37-32\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+    "file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth"
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/sheets/v4/rest
+DEBUG:googleapiclient.discovery:URL being requested: GET https://sheets.googleapis.com/v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/1-Approve%20Courses-Instructors-DropDown%20Menus%21N2%3AAN799?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://sheets.googleapis.com/v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/2-Schedule%20Recording-Instructional%20Day%21A57%3AAA?alt=json
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z59?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z60?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z61?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z62?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z63?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z64?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z65?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z66?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z67?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z68?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z69?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z70?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/%272-Schedule%20Recording-Instructional%20Day%27%21Z71?valueInputOption=USER_ENTERED HTTP/1.1" 200 None
+DEBUG:google.auth.transport.requests:Making request: POST https://oauth2.googleapis.com/token
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): oauth2.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\Documents\GitHub\EECS281_SP\ExcelToCal-Python\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\Documents\GitHub\EECS281_SP\ExcelToCal-Python\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\Documents\GitHub\EECS281_SP\ExcelToCal-Python\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\the real sauce boss\Documents\GitHub\EECS281_SP\ExcelToCal-Python\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+    "file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth"
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest
+DEBUG:urllib3.util.retry:Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://www.googleapis.com:443 "GET /drive/v3/files?q=mimeType%3D%22application%2Fvnd.google-apps.spreadsheet%22+and+name+%3D+%22Nexus+Recording+Schedule+-+Master%22&pageSize=1000&supportsAllDrives=True&includeItemsFromAllDrives=True HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): sheets.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "GET /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ?includeGridData=false HTTP/1.1" 200 None
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/calendar/v3/users/me/calendarList?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\Documents\GitHub\EECS281_SP\ExcelToCal-Python\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\Documents\GitHub\EECS281_SP\ExcelToCal-Python\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\the real sauce boss\Documents\GitHub\EECS281_SP\ExcelToCal-Python\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\the real sauce boss\Documents\GitHub\EECS281_SP\ExcelToCal-Python\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+    "file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth"
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/sheets/v4/rest
+DEBUG:googleapiclient.discovery:URL being requested: GET https://sheets.googleapis.com/v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/1-Approve%20Courses-Instructors-DropDown%20Menus%21N2%3AAN799?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\__init__.py", line 36, in autodetect
+ModuleNotFoundError: No module named 'google.appengine'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\__init__.py", line 42, in autodetect
+  File "c:\users\the real sauce boss\appdata\local\programs\python\python37-32\lib\site-packages\PyInstaller\loader\pyimod03_importers.py", line 623, in exec_module
+    exec(bytecode, module.__dict__)
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+INFO:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest
+DEBUG:urllib3.util.retry:Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://www.googleapis.com:443 "GET /drive/v3/files?q=mimeType%3D%22application%2Fvnd.google-apps.spreadsheet%22+and+name+%3D+%22Nexus+Recording+Schedule+-+Master%22&pageSize=1000&supportsAllDrives=True&includeItemsFromAllDrives=True HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): sheets.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "GET /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ?includeGridData=false HTTP/1.1" 200 None
+INFO:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/calendar/v3/users/me/calendarList?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\__init__.py", line 36, in autodetect
+ModuleNotFoundError: No module named 'google.appengine'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\__init__.py", line 42, in autodetect
+  File "c:\users\the real sauce boss\appdata\local\programs\python\python37-32\lib\site-packages\PyInstaller\loader\pyimod03_importers.py", line 623, in exec_module
+    exec(bytecode, module.__dict__)
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+INFO:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/sheets/v4/rest
+INFO:googleapiclient.discovery:URL being requested: GET https://sheets.googleapis.com/v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/1-Approve%20Courses-Instructors-DropDown%20Menus%21N2%3AAN799?alt=json
+INFO:googleapiclient.discovery:URL being requested: GET https://sheets.googleapis.com/v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/2-Schedule%20Recording-Instructional%20Day%21A57%3AAA?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\__init__.py", line 36, in autodetect
+ModuleNotFoundError: No module named 'google.appengine'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\__init__.py", line 42, in autodetect
+  File "c:\users\the real sauce boss\appdata\local\programs\python\python37-32\lib\site-packages\PyInstaller\loader\pyimod03_importers.py", line 623, in exec_module
+    exec(bytecode, module.__dict__)
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+INFO:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest
+DEBUG:urllib3.util.retry:Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://www.googleapis.com:443 "GET /drive/v3/files?q=mimeType%3D%22application%2Fvnd.google-apps.spreadsheet%22+and+name+%3D+%22Nexus+Recording+Schedule+-+Master%22&pageSize=1000&supportsAllDrives=True&includeItemsFromAllDrives=True HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): sheets.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://sheets.googleapis.com:443 "GET /v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ?includeGridData=false HTTP/1.1" 200 None
+INFO:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/calendar/v3/users/me/calendarList?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\__init__.py", line 36, in autodetect
+ModuleNotFoundError: No module named 'google.appengine'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+ModuleNotFoundError: No module named 'oauth2client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "site-packages\googleapiclient\discovery_cache\__init__.py", line 42, in autodetect
+  File "c:\users\the real sauce boss\appdata\local\programs\python\python37-32\lib\site-packages\PyInstaller\loader\pyimod03_importers.py", line 623, in exec_module
+    exec(bytecode, module.__dict__)
+  File "site-packages\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+INFO:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/sheets/v4/rest
+INFO:googleapiclient.discovery:URL being requested: GET https://sheets.googleapis.com/v4/spreadsheets/15-sqH2xXxN2Oq-VPR-Ei7u9aUIqImjEMFieo32gd1BQ/values/1-Approve%20Courses-Instructors-DropDown%20Menus%21N2%3AAN799?alt=json

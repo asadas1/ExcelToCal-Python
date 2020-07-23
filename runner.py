@@ -21,13 +21,13 @@ import xlrd
 
 #This sets up logging for exceptions and output basically
 log = open("log.txt", "a")
-#sys.stdout = log
+sys.stdout = log
 
 LOG_FILENAME = 'exceptions.txt'
 logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
 def my_handler(type, value, tb):
     logging.exception("Uncaught exception: {0}".format(str(value)))
-#sys.excepthook = my_handler
+sys.excepthook = my_handler
 
 # If modifying these scopes, delete the file token.pickle. "spreadsheets.google.com/feeds"
 SCOPES = ['https://www.googleapis.com/auth/calendar', 'https://www.googleapis.com/auth/spreadsheets', "https://www.googleapis.com/auth/drive"]
@@ -299,7 +299,7 @@ def main():
     else:
         for row in values:
             print(row)
-            if not (len(row) > 5):
+            if not (len(row) > 26):
                 continue
             if search_method == 1:
                 TEST_DATE = datetime.datetime.strptime(row[0], '%m/%d/%Y')
@@ -419,13 +419,13 @@ def main():
                 list_of_emailed_names.append(row[11])
                 print(their_email)
         if row[12]:
-                if not (row[11] in list_of_emailed_names):
+            if not (row[11] in list_of_emailed_names):
                 their_email = staff_to_email[row[12]]
                 list_of_attendees.append({'email': their_email})
                 list_of_emailed_names.append(row[12])
                 print(their_email)
         if row[13]:
-                if not (row[11] in list_of_emailed_names):
+            if not (row[11] in list_of_emailed_names):
                 their_email = staff_to_email[row[13]]
                 list_of_attendees.append({'email': their_email})
                 list_of_emailed_names.append(row[13])
@@ -503,7 +503,6 @@ def main():
         print(dict_of_locations[row[1]])
         #Uses the service to insert the event
         #event = service.events().insert(calendarId=dict_of_locations[row[1]], body=event, sendUpdates='all').execute()
-        #could possibly make a popup with the HTML link as output
         #print ('Event created: %s' % (event.get('htmlLink')))
         #event_link = event.get('htmlLink')
         event_link = "google.com"
