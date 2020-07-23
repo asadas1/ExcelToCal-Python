@@ -1,0 +1,263 @@
+Checking for updates
+0.02
+Program out of date
+Checking for updates
+0.02
+Bubs
+Main Calander
+Integrated Systems + Design
+Chrysler-165
+Chrysler-109B
+salikhod@umich.edu
+asadas@umich.edu
+AGLT2 student work schedule
+Chrysler-109A
+Asad Siddiqui - ISD - Work Schedule
+Chrysler-151
+Contacts
+Holidays in United States
+Please match the numbers for the Calendars for each location, if no match exists enter '-1' 
+Calanders on your account: 
+
+
+
+ [ 0 ]:   Bubs          
+ [ 1 ]:   Main Calander          
+ [ 2 ]:   Integrated Systems + Design          
+ [ 3 ]:   Chrysler-165          
+ [ 4 ]:   Chrysler-109B          
+ [ 5 ]:   salikhod@umich.edu          
+ [ 6 ]:   asadas@umich.edu          
+ [ 7 ]:   AGLT2 student work schedule          
+ [ 8 ]:   Chrysler-109A          
+ [ 9 ]:   Asad Siddiqui - ISD - Work Schedule          
+ [ 10 ]:   Chrysler-151          
+ [ 11 ]:   Contacts          
+ [ 12 ]:   Holidays in United States          
+
+Chrysler 133
+    MGR: Dru
+    IPS: Brandon
+    MA: Ben
+    Other: Shuba
+         Ben: catlin@umich.edu
+    CCBK: Brandon
+    o-CC: Brandon
+    nc-mary: Shuba
+    nc-dru: Kirk
+    nc-paul: Kirk
+Chrysler 151
+    MGR: Paul
+    IPS: Mary
+    MA: Sophie
+    Other: Samy
+         Sophie: sophmari@umich.edu
+    CCBK: Mary
+    o-CC: Mary
+    nc-mary: 
+    nc-dru: Samy
+    nc-paul: Samy
+Chrysler 165
+    MGR: Mary Lynn
+    IPS: Kirk
+    MA: Maria
+    Other: Brian
+         Maria: mimaria@umich.edu
+    CCBK: 
+    o-CC: Shuba
+Chrysler Studio
+    MGR: 
+    IPS: Brian
+    MA: Victor
+    Other: 
+         Victor: victorli@umich.edu
+LL1
+    MGR: 
+    IPS: 
+    MA: Nikhil
+    Other: 
+         Nikhil: nikhilal@umich.edu
+LL2
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Dru: bartos@umich.edu
+Remote
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Brandon: bsandusk@umich.edu
+1610 IOE
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Mary: reillym@umich.edu
+1670 BBB
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Kirk: kirklaw@umich.edu
+107 GFL
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Paul: pnucci@umich.edu
+
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Mary Lynn: mlmeff@umich.edu
+
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Shuba: skash@umich.edu
+
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Brian: dunnbri@umich.edu
+
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Samy: salikhod@umich.edu
+Checking for updates
+0.02
+Bubs
+Main Calander
+Integrated Systems + Design
+Chrysler-165
+Chrysler-109B
+salikhod@umich.edu
+asadas@umich.edu
+AGLT2 student work schedule
+Chrysler-109A
+Asad Siddiqui - ISD - Work Schedule
+Chrysler-151
+Contacts
+Holidays in United States
+Please match the numbers for the Calendars for each location, if no match exists enter '-1' 
+Calanders on your account: 
+
+
+
+ [ 0 ]:   Bubs          
+ [ 1 ]:   Main Calander          
+ [ 2 ]:   Integrated Systems + Design          
+ [ 3 ]:   Chrysler-165          
+ [ 4 ]:   Chrysler-109B          
+ [ 5 ]:   salikhod@umich.edu          
+ [ 6 ]:   asadas@umich.edu          
+ [ 7 ]:   AGLT2 student work schedule          
+ [ 8 ]:   Chrysler-109A          
+ [ 9 ]:   Asad Siddiqui - ISD - Work Schedule          
+ [ 10 ]:   Chrysler-151          
+ [ 11 ]:   Contacts          
+ [ 12 ]:   Holidays in United States          
+
+Chrysler 133
+    MGR: Dru
+    IPS: Brandon
+    MA: Ben
+    Other: Shuba
+         Ben: catlin@umich.edu
+    CCBK: Brandon
+    o-CC: Brandon
+    nc-mary: Shuba
+    nc-dru: Kirk
+    nc-paul: Kirk
+Chrysler 151
+    MGR: Paul
+    IPS: Mary
+    MA: Sophie
+    Other: Samy
+         Sophie: sophmari@umich.edu
+    CCBK: Mary
+    o-CC: Mary
+    nc-mary: 
+    nc-dru: Samy
+    nc-paul: Samy
+Chrysler 165
+    MGR: Mary Lynn
+    IPS: Kirk
+    MA: Maria
+    Other: Brian
+         Maria: mimaria@umich.edu
+    CCBK: 
+    o-CC: Shuba
+Chrysler Studio
+    MGR: 
+    IPS: Brian
+    MA: Victor
+    Other: 
+         Victor: victorli@umich.edu
+LL1
+    MGR: 
+    IPS: 
+    MA: Nikhil
+    Other: 
+         Nikhil: nikhilal@umich.edu
+LL2
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Dru: bartos@umich.edu
+Remote
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Brandon: bsandusk@umich.edu
+1610 IOE
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Mary: reillym@umich.edu
+1670 BBB
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Kirk: kirklaw@umich.edu
+107 GFL
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Paul: pnucci@umich.edu
+
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Mary Lynn: mlmeff@umich.edu
+
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Shuba: skash@umich.edu
+
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Brian: dunnbri@umich.edu
+
+    MGR: 
+    IPS: 
+    MA: 
+    Other: 
+         Samy: salikhod@umich.edu

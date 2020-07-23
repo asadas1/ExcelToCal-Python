@@ -15,6 +15,8 @@ import tkinter as tk
 from tkinter import *
 from tkinter.filedialog import askopenfilename
 from tkinter import simpledialog
+from tkinter import scrolledtext
+import tkinter.scrolledtext
 import tkinter.messagebox
 import datetime
 import pickle
@@ -24,7 +26,7 @@ from google.auth.transport.requests import Request
 import xlrd
 
 #Current Version
-currentVersion = 0.01
+currentVersion = 0.02
 
 #This sets up logging for exceptions and output basically
 log = open("log.txt", "a")
@@ -132,7 +134,7 @@ def main():
 
     #Append to single string in order to display in msgbox
     cal_msg = "Please match the numbers for the Calendars for each location, if no match exists enter \'-1\' " + '\n' +  "Calanders on your account: " + '\n'
-    cal_msg2 = '\n'
+    cal_msg2 = ''
     index = 0
     for dicts in calHolder:
         msg = '\n' + ' [ ' + str(index) + ' ]:   ' + dicts["in"] + '          '
@@ -146,7 +148,6 @@ def main():
 
     
     #Prompt user for selection via messagebox
-    cal_msg2 += '\n'
     print(cal_msg)
     print(cal_msg2)
     USER_INP = -1
@@ -215,8 +216,14 @@ def main():
     for i in range(len(dict_of_locations)):
         list_of_variables.append(IntVar(master))
         
-    tk.Label(master, text=cal_msg, padx = 10, pady = 5, anchor = 'center').grid(row=0)
-    tk.Label(master, text=cal_msg2, padx = 10, pady = 5, justify = 'left').grid(row=1)
+    tk.Label(master, text=cal_msg, padx = 1, pady = 1, anchor = 'center').grid(row=0)
+    text = tk.Text(master, padx = 1, pady = 1)
+    text.insert(INSERT, cal_msg2)
+    text.configure(state=DISABLED)
+    text.grid(row=1)
+    textVsb = tk.Scrollbar(master, orient="vertical", command=text.yview)
+    text.configure(yscrollcommand=textVsb.set)
+    textVsb.grid(row=1, column=1, sticky="ns")
     endrow = 0
     for i, location in enumerate(dict_of_locations):
         tk.Label(master, text=location, padx = 10, pady = 5).grid(row=i+2)
@@ -474,7 +481,7 @@ def main():
                         if not (roww[22] in list_of_emailed_names):
                             list_of_emailed_names.append(roww[22])
                             their_email = staff_to_email[roww[22]]
-                            list_of_attendees.append({'email': their_email, 'optional': 1})
+                            list_of_attendees.append({'email': their_email, 'optional': True})
 
         else:
             print("It's a Non-Credit Course. ")
@@ -484,20 +491,30 @@ def main():
                         if not (roww[24] in list_of_emailed_names):
                             list_of_emailed_names.append(roww[24])
                             their_email = staff_to_email[roww[24]]
-                            list_of_attendees.append({'email': their_email, 'optional': 1})
+                            list_of_attendees.append({'email': their_email, 'optional': True})
             if (row[11] == "Dru"):
                 for roww in values3:
                     if (len(roww) >= 26):
                         if not (roww[25] in list_of_emailed_names):
                             list_of_emailed_names.append(roww[25])
                             their_email = staff_to_email[roww[25]]
-                            list_of_attendees.append({'email': their_email, 'optional': 1})
+                            list_of_attendees.append({'email': their_email, 'optional': True})
             if (row[11] == "Paul"):
                     if (len(roww) >= 27):
                         if not (roww[26] in list_of_emailed_names):
                             list_of_emailed_names.append(roww[26])
                             their_email = staff_to_email[roww[26]]
-                            list_of_attendees.append({'email': their_email, 'optional': 1})
+                            list_of_attendees.append({'email': their_email, 'optional': True})
+            if not row[11]:
+                if not ("Samy" in list_of_emailed_names):
+                            list_of_emailed_names.append("Samy")
+                            their_email = staff_to_email["Samy"]
+                            list_of_attendees.append({'email': their_email, 'optional': True})
+                if not ("Kirk" in list_of_emailed_names):
+                            list_of_emailed_names.append("Kirk")
+                            their_email = staff_to_email["Kirk"]
+                            list_of_attendees.append({'email': their_email, 'optional': True})
+            
 
 
 
@@ -529,10 +546,10 @@ def main():
 
         print(dict_of_locations[row[1]])
         #Uses the service to insert the event
-        #event = service.events().insert(calendarId=dict_of_locations[row[1]], body=event, sendUpdates='all').execute()
-        #print ('Event created: %s' % (event.get('htmlLink')))
-        #event_link = event.get('htmlLink')
-        event_link = "google.com"
+        event = service.events().insert(calendarId=dict_of_locations[row[1]], body=event, sendUpdates='all').execute()
+        print ('Event created: %s' % (event.get('htmlLink')))
+        event_link = event.get('htmlLink')
+        #event_link = "google.com"
         event_printlist.append({'summary':summary_in, 'date':row[0], 'link':event_link})
         print(event)
 
